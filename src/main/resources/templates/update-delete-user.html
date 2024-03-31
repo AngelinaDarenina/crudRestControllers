@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>Edit User</h1>
+<form th:method="PATCH" th:action="@{'/admin/updateUser/' + ${user.getId()}}" th:object="${user}">
+
+    <label for="name">Name: </label>
+    <input type="text" th:field="*{username}" id="name"/>
+
+    <p></p>
+
+    <label for="lastName">Last Name: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+
+    <p></p>
+
+    <label for="age">Age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+
+    <p></p>
+
+    <label for="email">Email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+
+    <p></p>
+
+    <label for="password">Password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+
+    <p></p>
+    <p>Initial Roles:</p>
+    <ul>
+        <li th:each="role : ${initialRoles}" th:text="${role.getName()}"></li>
+    </ul>
+
+    <p></p>
+
+    <label for="roles">Update roles (user-1, admin-2):</label>
+    <input type="text" id="roles" name="roles" />
+    <p>Both (comma-separated): 1,2</p>
+
+    <p></p>
+
+    <input type="submit" value="Update"/>
+</form>
+
+<p></p>
+
+<form th:method="DELETE" th:action="@{'/admin/deleteUser/' + ${user.getId()}}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>
